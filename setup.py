@@ -33,7 +33,11 @@ with open('CHANGELOG.md') as history_file:
 install_reqs = parse_requirements('requirements.txt', session='')
 
 # reqs is a list of requirement
-requirements = [str(ir.req) for ir in install_reqs]
+requirements = list()
+try:
+    requirements = [str(ir.req) for ir in install_reqs]
+except:
+    requirements = [str(ir.requirement) for ir in install_reqs]
 
 setup_requirements = [
     # 'pytest-runner',
@@ -44,7 +48,11 @@ if PY2:
 else:
     test_reqs = parse_requirements('requirements_dev_py3.txt', session='')
 
-test_requirements = list({str(ir.req) for ir in test_reqs} - set(requirements))
+test_requirements = list()
+try:
+    test_requirements = list({str(ir.req) for ir in test_reqs} - set(requirements))
+except:
+    test_requirements = list({str(ir.requirement) for ir in test_reqs} - set(requirements))
 
 setup(
     name='etcd3-py',
