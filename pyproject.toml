@@ -1,0 +1,56 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "etcd3-py"
+dynamic = ["version"]
+description = "Python client for etcd v3 (Using gRPC-JSON-Gateway)"
+readme = "README.md"
+license = "Apache-2.0"
+requires-python = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*"
+authors = [
+    { name = "Renjie Cai", email = "revol.cai@gmail.com" },
+]
+keywords = [
+    "etcd3",
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: Apache Software License",
+    "Natural Language :: English",
+    "Programming Language :: Python :: 2.7",
+    "Programming Language :: Python :: 3.5",
+    "Programming Language :: Python :: 3.6",
+    "Programming Language :: Python :: 3.7",
+]
+dependencies = [
+    "cryptography>=1.3.4",
+    "idna>=2.0.0",
+    "pyOpenSSL>=0.14",
+    "requests>=2.10.0",
+    "semantic-version>=2.6.0",
+    "six>=1.11.0",
+]
+
+[project.optional-dependencies]
+"enum34" = [
+    "enum34>=1.1.6; python_version < \"3.4\"",
+]
+"aiohttp" = [
+    "aiohttp; python_version >= \"3.5\"",
+]
+
+[project.urls]
+Homepage = "https://github.com/revolution1/etcd3-py"
+
+[tool.hatch.version]
+path = "etcd3/version.py"
+
+[tool.hatch.build.targets.sdist]
+include = [
+    "etcd3",
+]
+[tool.hatch.build.targets.wheel]
+packages = ["etcd3"]
